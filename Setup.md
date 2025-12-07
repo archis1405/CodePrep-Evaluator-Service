@@ -7,8 +7,11 @@ npm init -y
 2. 
 ```
 npm install -D typescript
-npm install concurrently --> helps to run multiple packages at the same time 
+npm install concurrently      --> helps to run multiple packages at the same time 
 npm i dotenv
+npm i bullmq                  --> Redis doesnot have support for typescript
+npm i ioredis                 --> Redis doesnot have support for typescript so we have install types manually 
+npm i @types/ioredis
 ```
 3. 
 ```
