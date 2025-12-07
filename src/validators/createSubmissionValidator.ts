@@ -1,9 +1,10 @@
-import { ZodSchema } from 'zod';
-import { CreateSubmissionDTO } from '../dtos/CreateSubmissionDTO';
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { success, ZodSchema } from 'zod';
 import { NextFunction, Request, Response } from 'express';
 
 //Middleware function
-export const validateCreateSubmissionDTO = (schema: ZodSchema<CreateSubmissionDTO>) => (
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const validate = (schema: ZodSchema<any>) => (
     req: Request,
     res: Response,
     next: NextFunction
@@ -18,7 +19,10 @@ export const validateCreateSubmissionDTO = (schema: ZodSchema<CreateSubmissionDT
     catch (error) {
         console.log(error);
         return res.status(400).json({
-            message: "Invalid Request"
+            success: false,
+            message: "Invalid Request params recieved",
+            data: {},
+            error: error
         });
     }
 };
