@@ -30,6 +30,7 @@
     "typescript-eslint": "^8.48.1"
   },
   "dependencies": {
+    "@bull-board/express": "^6.15.0",
     "@types/ioredis": "^4.28.10",
     "bullmq": "^5.65.1",
     "concurrently": "^9.2.0",

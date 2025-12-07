@@ -56,3 +56,10 @@ Make these config changes in tsconfig.json
 ```
 npm run dev
 ```
+
+
+# BULL BOARD 
+```
+npm i @bull-board/ui
+Link --> https://github.com/felixmosh/bull-board
+```

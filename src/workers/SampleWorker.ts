@@ -4,12 +4,12 @@ import SampleJob from "../jobs/SampleJob";
 import redisConnection from "../config/redisConfig";
 
 export default function SampleWorker(queueName: string){
-    console.log("Setting up the redis connection",redisConnection);
+    // console.log("Setting up the redis connection",redisConnection); DEBUG LOGGER
 
     new Worker(
         queueName , 
         async(job : Job)=>{
-            console.log("Sample Job Worker processing the job",job);
+            // console.log("Sample Job Worker processing the job",job); DEBUG LOGGER
 
             if(job.name == "SampleJob"){
                 const sampleJobInstance = new SampleJob(job.data);
