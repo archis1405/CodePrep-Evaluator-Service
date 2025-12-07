@@ -7,7 +7,8 @@ npm init -y
 2. 
 ```
 npm install -D typescript
-npm install concurrently
+npm install concurrently --> helps to run multiple packages at the same time 
+npm i dotenv
 ```
 3. 
 ```
@@ -21,7 +22,7 @@ Add the following Scripts in the package.json
     "watch": "npx tsc -w",
     "prestart": "npm run build",
     "start": "npx nodemon dist/index.js",
-    "dev": "npx concurrently --kill-others \"npm run watch\" \"npm start\"  "
+    "dev": "npx concurrently --kill-others \"npm run watch\" \"npm start\"  " --> runs both the scripts concurrently 
 ```
 
 5. 
@@ -29,9 +30,9 @@ Add the following Scripts in the package.json
 Make these config changes in tsconfig.json
 
 "noUnusedLocals": true, 
-"strict": true,                                      /* Enable all strict type-checking options. */
-"noImplicitAny": true,                            /* Enable error reporting for expressions and declarations with an implied 'any' type. */
-"strictNullChecks": true,                         /* When type checking, take into account 'null' and 'undefined'. */
+"strict": true,                                    /* Enable all strict type-checking options. */
+"noImplicitAny": true,                             /* Enable error reporting for expressions and declarations with an implied 'any' type. */
+"strictNullChecks": true,                          /* When type checking, take into account 'null' and 'undefined'. */
 "strictFunctionTypes": true, 
 
 "forceConsistentCasingInFileNames": true, 
