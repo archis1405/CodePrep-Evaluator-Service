@@ -12,6 +12,7 @@ npm i dotenv
 npm i bullmq                  --> Redis doesnot have support for typescript
 npm i ioredis                 --> Redis doesnot have support for typescript so we have install types manually 
 npm i @types/ioredis
+npm i dockerode
 ```
 3. 
 ```

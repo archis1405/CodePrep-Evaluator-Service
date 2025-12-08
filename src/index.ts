@@ -3,7 +3,7 @@ import bodyParser from "body-parser";
 
 import serverConfig from "./config/serverConfig";
 import apiRouter from "./routes";
-import sampleQueueProducer from "./producers/SampleQueueProducer";
+// import sampleQueueProducer from "./producers/SampleQueueProducer";
 import sampleWorker from "./workers/SampleWorker";
 import bullBoardAdapter from "./config/bullBoardConfig";
 
@@ -22,7 +22,7 @@ app.listen(serverConfig.PORT , () => {
 
     sampleWorker('SampleQueue');
 
-    sampleQueueProducer('SampleJob', {
+    /* sampleQueueProducer('SampleJob', {
         name : "Test by Archisman",
         company: "CodePrep",
         role: "Software Engineer Intern",
@@ -35,4 +35,5 @@ app.listen(serverConfig.PORT , () => {
         role: "SWE Intern",
         location: "BLR"
     }, 1); // Higher priority job --> will use it for Paid leetCode users 
+    */
 });
