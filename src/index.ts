@@ -6,6 +6,7 @@ import apiRouter from "./routes";
 // import sampleQueueProducer from "./producers/SampleQueueProducer";
 import sampleWorker from "./workers/SampleWorker";
 import bullBoardAdapter from "./config/bullBoardConfig";
+import runPython from "./containers/runPythonDocker";
 
 const app:Express = express();
 
@@ -36,4 +37,7 @@ app.listen(serverConfig.PORT , () => {
         location: "BLR"
     }, 1); // Higher priority job --> will use it for Paid leetCode users 
     */
+   
+    const code = `print("Hello from Python Container!")`;
+    runPython(code);
 });
