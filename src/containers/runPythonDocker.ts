@@ -4,12 +4,20 @@ import { PYTHON_IMAGE } from '../utils/constants';
 import decodeDockerStream from './dockerHelper';
 
 
-async function runPython(code: string){
+async function runPython(code: string , inputTestCase: string){
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const rawLogBuffer: Buffer[] = [];
     console.log("Initializing Python Container...");
 
-    const pythonDockerContainer = await createContainer(PYTHON_IMAGE, ['python3' , '-c' , code , 'stty -echo']);
+    const runCommand = `echo '${code.replace(/'/g, `'\\"`)}' > test.py && echo '${inputTestCase.replace(/'/g, `'\\"`)}' | python3 test.py`;
+    console.log(runCommand);
+
+    //const pythonDockerContainer = await createContainer(PYTHON_IMAGE, ['echo', code, '>test.py && echo' , inputTestCase , '|' , 'python3 test.py' ]);
+    const pythonDockerContainer = await createContainer(PYTHON_IMAGE, [
+        '/bin/sh',
+        '-c',
+        runCommand
+    ])
     //Starting or booting the corresponding container
     await pythonDockerContainer.start();
 

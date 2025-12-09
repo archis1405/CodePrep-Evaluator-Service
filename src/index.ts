@@ -37,7 +37,7 @@ app.listen(serverConfig.PORT , () => {
         location: "BLR"
     }, 1); // Higher priority job --> will use it for Paid leetCode users 
     */
-   
-    const code = `print("Hello from Python Container!")`;
-    runPython(code);
+
+    const code = "print(input())";
+    runPython(code, '100');
 });
