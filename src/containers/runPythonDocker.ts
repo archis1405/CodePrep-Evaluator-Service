@@ -6,7 +6,7 @@ import decodeDockerStream from './dockerHelper';
 
 
 async function runPython(code: string , inputTestCase: string){
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    
     const rawLogBuffer: Buffer[] = [];
     console.log("Initializing Python Container...");
 

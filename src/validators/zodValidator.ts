@@ -1,11 +1,10 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import {  ZodSchema } from 'zod';
 import { NextFunction, Request, Response } from 'express';
 
 //Middleware function
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const validate = (schema: ZodSchema<any>) => (
-    
+
     req: Request,
     res: Response,
     next: NextFunction
