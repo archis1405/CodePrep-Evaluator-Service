@@ -6,7 +6,9 @@ import apiRouter from "./routes";
 // import sampleQueueProducer from "./producers/SampleQueueProducer";
 import sampleWorker from "./workers/SampleWorker";
 import bullBoardAdapter from "./config/bullBoardConfig";
-import runPython from "./containers/runPythonDocker";
+//import runPython from "./containers/runPythonDocker";
+//import runJava from "./containers/runJavaDocker";
+import runCpp from "./containers/runCpp";
 
 const app:Express = express();
 
@@ -36,8 +38,48 @@ app.listen(serverConfig.PORT , () => {
         role: "SWE Intern",
         location: "BLR"
     }, 1); // Higher priority job --> will use it for Paid leetCode users 
-    */
+    
 
-    const code = "print(input())";
-    runPython(code, '100');
+    //const code = "print(input())";
+    const code = ` x = input()
+y = input()
+print("value of x is" , x)
+print("value of y is" , y)
+`;
+
+    const code = ` 
+    import java.util.*;
+        public class Main {
+            public static void main(String[] args) {
+                Scanner sc = new Scanner(System.in);
+                int a = sc.nextInt();
+                System.out.println("Input received: " + a);
+                for (int i = 0; i < 5; i++) {
+                    System.out.println("Value of a is: " + a);
+                }
+            }
+        }
+`;
+*/
+
+    const code = `
+    #include <iostream>
+    using namespace std;
+    
+    int main() {
+        int a;
+        cin >> a;
+        cout << "Input received: " << a << endl;
+        for (int i = 0; i < 5; i++) {
+            cout << "Value of a is: " << a << endl;
+        }
+        return 0;
+    }
+    `
+
+    const inputCase = `100`;
+
+    // runPython(code, inputCase);
+    //runJava(code, inputCase);
+    runCpp(code, inputCase);
 });
