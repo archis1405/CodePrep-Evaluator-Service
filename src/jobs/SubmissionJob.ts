@@ -1,34 +1,51 @@
 import { Job } from "bullmq";
 import { IJob } from "../types/bullMQJobDefination";
 import { SubmissionPayload } from "../types/submissionPayload";
-import runCpp from "../containers/runCpp";
+import createExecutor from "../utils/ExecutorFactory";
+import { ExecutionResponse } from "../types/CodeExecutorStratergy";
+//import { ExecutionResponse } from "../types/CodeExecutorStratergy";
 
-export default class SubmissionJob implements IJob{
+
+
+export default class SubmissionJob implements IJob {
     name: string;
     payload: Record<string, SubmissionPayload>;
-    
-    constructor(payload : Record<string, SubmissionPayload>){
+    constructor(payload: Record<string, SubmissionPayload>) {
         this.payload = payload;
         this.name = this.constructor.name;
     }
 
-    handle = async (job? : Job) => {
-        console.log("Handler logic for SubmissionJob");
+    handle = async (job?: Job) => {
+        console.log("Handler of the job called");
         console.log(this.payload);
-        if(job){
+        if(job) {
             const key = Object.keys(this.payload)[0];
+            const codeLanguage = this.payload[key].language;
+            const code = this.payload[key].code;
+            const inputTestCase = this.payload[key].inputCase;
             console.log(this.payload[key].language);
 
-            if(this.payload[key].language === "CPP"){
-                const response = await runCpp(this.payload[key].code, this.payload[key].inputCase);
-                console.log("CPP Execution Response:", response);
-            }
+            const strategy = createExecutor(codeLanguage);
+
+            if(strategy!=null){
+                const response : ExecutionResponse = await strategy.execute(code,inputTestCase);
+
+                if(response.status == "COMPLEATED"){
+                    console.log("Code executed Successfully");
+                    console.log(response);
+                }
+
+                else{
+                    console.log("Something went wrong");
+                    console.log(response);
+                }
+            }  
         }
     };
 
-    failed = (job? : Job) => {
-        console.log("Failed logic for SubmissionJob");
-        if(job){
+    failed = (job?: Job) : void => {
+        console.log("Job failed");
+        if(job) {
             console.log(job.id);
         }
     };
